@@ -758,9 +758,18 @@ with where:
     </div>
     """,
     unsafe_allow_html=True)
+    st.markdown("### Map of accidents in France in 2016 (because of data size limitation)")
     df_loc = df[["num_acc", "lat", "long", "grav"]].copy()
-    df_loc["lat"] = pd.to_numeric(df_loc["lat"], errors="coerce") / 100000
-    df_loc["long"] = pd.to_numeric(df_loc["long"], errors="coerce") / 100000
+    print(df_loc.head())
+
+    df_loc["lat"] = df_loc["lat"].astype(str).str.replace(',', '.', regex=False)
+    df_loc["long"] = df_loc["long"].astype(str).str.replace(',', '.', regex=False)
+
+    df_loc["lat"] = pd.to_numeric(df_loc["lat"], errors="coerce")
+    df_loc["long"] = pd.to_numeric(df_loc["long"], errors="coerce")
+
+    print(df_loc.head())
+
     df_loc = df_loc.dropna(subset=['lat', 'long'])
     if df_loc.empty:
         st.error("Erreur: Le DataFrame est vide après la conversion et le nettoyage. Vérifiez votre fichier source.")
@@ -771,7 +780,7 @@ with where:
         (df_loc["long"].between(-6, 10))
     ].rename(columns={"long": "lon"})
     if df_loc.empty:
-        st.error("Erreur2: Le DataFrame est vide après la conversion et le nettoyage. Vérifiez votre fichier source.")
+        st.error("Erreur: Le DataFrame est vide après la conversion et le nettoyage. Vérifiez votre fichier source.")
         st.stop()
     df_loc = df_loc.sample(n=10000)
     # Regrouper par accident pour collecter toutes les gravités associées
