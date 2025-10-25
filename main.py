@@ -748,17 +748,18 @@ with where:
     
 
     # === Map ===
+    st.markdown("### Map of accidents in France in 2016 (because of data size limitation)")
+
     st.markdown(
     """
     <div style="display:flex; gap:20px;">
-      <div style="color:red;">⬤ Tués</div>
-      <div style="color:darkorange;">⬤ Hospitalisés</div>
-      <div style="color:gold;">⬤ Blessés légers</div>
-      <div style="color:green;">⬤ Indemnes</div>
+      <div style="color:red;">⬤ Killed</div>
+      <div style="color:darkorange;">⬤ Hospitalized</div>
+      <div style="color:gold;">⬤ Slightly Injured</div>
+      <div style="color:green;">⬤ Unharmed</div>
     </div>
     """,
     unsafe_allow_html=True)
-    st.markdown("### Map of accidents in France in 2016 (because of data size limitation)")
     df_loc = df[["num_acc", "lat", "long", "grav"]].copy()
     print(df_loc.head())
 
@@ -844,10 +845,10 @@ with where:
     tooltip = {
         "html": (
             "<b>Accident:</b> {num_acc}<br/>"
-            "<b>Tués:</b> {killed}<br/>"
-            "<b>Hospitalisés:</b> {hospitalized}<br/>"
-            "<b>Blessés légers:</b> {slight}<br/>"
-            "<b>Indemnes:</b> {unharmed}"
+            "<b>Killed:</b> {killed}<br/>"
+            "<b>Hospitalized:</b> {hospitalized}<br/>"
+            "<b>Slightly Injured:</b> {slight}<br/>"
+            "<b>Unharmed:</b> {unharmed}"
         ),
         "style": {"backgroundColor": "white", "color": "black"}
     }
