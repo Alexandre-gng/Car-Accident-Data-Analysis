@@ -761,12 +761,12 @@ with where:
     df_loc = df[["num_acc", "lat", "long", "grav"]].copy()
     df_loc["lat"] = pd.to_numeric(df_loc["lat"], errors="coerce") / 100000
     df_loc["long"] = pd.to_numeric(df_loc["long"], errors="coerce") / 100000
-
+    df_loc = df_loc.dropna(subset=['lat', 'long'])
     df_loc = df_loc[
         (df_loc["lat"].between(40, 52)) &
         (df_loc["long"].between(-6, 10))
     ].rename(columns={"long": "lon"})
-
+    df_loc = df_loc.sample(n=10000)
     # Regrouper par accident pour collecter toutes les gravités associées
     df_colors = (
         df_loc.groupby("num_acc")
