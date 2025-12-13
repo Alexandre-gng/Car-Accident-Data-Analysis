@@ -1,6 +1,6 @@
 # What Characterizes Car Accidents in France?
 
-link: [text](https://car-accident-data-analysis.streamlit.app/)
+link: [Old Streamlit link](https://car-accident-data-analysis.streamlit.app/)
 This project is a data analysis and visualization application built with **Streamlit** that explores a dataset of car accidents in France between **2015 and 2020**.
 
 The goal is to answer critical questions about road safety: Are current measures effective? Are they targeting the right demographics or issues?
